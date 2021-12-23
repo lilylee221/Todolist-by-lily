@@ -9,6 +9,7 @@ const myTodoList = document.querySelector('#my-todo-list');
 const addBtn = document.querySelector('.new-todo__add');
 const datepicker = document.querySelector('.new-todo__date');
 const ulEl = document.querySelector('.lists');
+const locationEl = document.querySelector('.navbar__location');
 
 //get today date & hour
 const now = new Date();
@@ -23,6 +24,46 @@ currentHour.textContent = `${hour}:${minutes}`;
 
 ////////////////////////////
 //////////////////////////////////////////////////////////////functions
+
+// Geolocation
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, () =>
+      alert('error occured')
+    );
+  }
+}
+//Geolocation success -> get lat, lng -> get city and country with Geocode API
+function success(position) {
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+
+  getCityCountry(lat, lng);
+}
+
+//Get city & country with lat, lng
+
+function getCityCountry(lat, lng) {
+  fetch(`https://geocode.xyz/${lat},${lng}?json=1`)
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Something went wrong(${response.status})`);
+      return response.json();
+    })
+    .then((data) =>
+      locationEl.insertAdjacentText(
+        'beforeend',
+        `📍 ${data.city}, ${data.country}`
+      )
+    )
+    .catch((err) =>
+      locationEl.insertAdjacentText(
+        'beforeend',
+        `An error occured ${err.message}`
+      )
+    );
+}
 
 //load quotes json and display
 
@@ -107,6 +148,7 @@ function getLocalStorage() {
   }
 }
 const init = function () {
+  getLocation();
   loadQuotes();
   getLocalStorage();
 };

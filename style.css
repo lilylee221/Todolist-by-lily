@@ -316,7 +316,7 @@ header {
   height: 4rem;
   margin-bottom: 0.4rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 .dateinfo {
@@ -335,7 +335,7 @@ header {
   font-weight: var(--font-weight-regular);
 }
 .list__actions {
-  flex-basis: 1 1 20%;
+  flex: 0 1 20%;
   font-size: inherit;
 }
 .list__actions button {
