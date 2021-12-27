@@ -220,16 +220,23 @@ header {
 }
 
 .home__quote-container {
+  width: 50rem;
+  height: 10rem;
   margin-bottom: 3.2rem;
   backface-visibility: hidden;
+  background-image: url(../img/Quote-background.png);
+  background-position: top;
+  background-position: center;
+  background-size: cover;
 }
-.home__quote-container h6 {
+.home__quote-container h5 {
   text-align: center;
   color: var(--on-primary-medium);
-  margin-bottom: 0.4rem;
+
+  margin-bottom: 1rem;
 }
 .home__quote-container p {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-large);
   font-weight: var(--font-weight-regular);
   color: var(--secondary-variant-color);
   text-align: center;

@@ -48,7 +48,9 @@ function getCityCountry(lat, lng) {
   fetch(`https://geocode.xyz/${lat},${lng}?json=1`)
     .then((response) => {
       if (!response.ok)
-        throw new Error(`Something went wrong(${response.status})`);
+        throw new Error(
+          `Problem with getting location data (${response.status})`
+        );
       return response.json();
     })
     .then((data) =>
