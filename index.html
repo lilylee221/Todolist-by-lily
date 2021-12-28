@@ -30,11 +30,11 @@
           alt="Todo List logo image"
           class="navbar__logo"
         />
-        <h3 class="navbar__title">Todo List by Lily</h3>
+        <h4 class="navbar__title">Todo List by Lily</h4>
       </div>
       <div class="navbar__current-info">
-        <span class="navbar__location">Valencia</span>
-        <div class="navbar__date-hour-container">
+        <span class="navbar__location"></span>
+        <div class="navbar__day-hour-container">
           <span class="navbar__date"></span>
           <span class="navbar__hour"></span>
         </div>
@@ -65,25 +65,73 @@
           <button type="submit" class="btn new-todo__add">Add</button>
         </form>
       </section>
+      <section class="calendar">
+        <div class="calendar__header">
+          <div class="calendar__month-year-container">
+            <span class="calendar__month-year">12/2021</span>
+            <button class="calendar__expand-btn">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+          <button class="calendar__add-button">
+            <i class="far fa-plus-square"></i>
+          </button>
+        </div>
+        <ul class="calendar__days-dates">
+          <li class="calendar__day-date">
+            <span class="calendar__day">Mon</span>
+            <button class="calendar__date">27</button>
+          </li>
+          <li class="calendar__day-date">
+            <span class="calendar__day">Tue</span>
+            <button class="calendar__date calendar__date--selected">28</button>
+          </li>
+          <li class="calendar__day-date">
+            <span class="calendar__day">Wed</span>
+            <button class="calendar__date">29</button>
+          </li>
+          <li class="calendar__day-date">
+            <span class="calendar__day">Thu</span>
+            <button class="calendar__date">30</button>
+          </li>
+          <li class="calendar__day-date">
+            <span class="calendar__day">Fri</span>
+            <button class="calendar__date">31</button>
+          </li>
+          <li class="calendar__day-date">
+            <span class="calendar__day">Sat</span>
+            <button class="calendar__date">1</button>
+          </li>
+          <li class="calendar__day-date">
+            <span class="calendar__day">Sun</span>
+            <button class="calendar__date">2</button>
+          </li>
+        </ul>
+      </section>
       <section id="my-todo-list">
         <ul class="lists"></ul>
       </section>
     </main>
-    <footer>
-      <h4 class="contact__title">Author Info</h4>
-      <div class="contact__links">
-        <h5 class="contact__email">lil.lee0221@gmail.com</h5>
+    <footer class="footer">
+      <h4 class="footer__title">Author Info</h4>
+      <div class="footer__contact-links">
+        <h5 class="footer__link">lil.lee0221@gmail.com</h5>
         <a
           href="https://www.linkedin.com/in/lily-lee-8288a5136/"
           target="blank"
+          class="footer__link"
         >
           <i class="fab fa-linkedin"></i>
         </a>
-        <a href="https://github.com/lilylee221/" target="blank">
+        <a
+          href="https://github.com/lilylee221/"
+          target="blank"
+          class="footer__link"
+        >
           <i class="fab fa-github"></i>
         </a>
       </div>
-      <p class="contact__copyright">2021 Lily Lee - All rights reserved</p>
+      <p class="footer__copyright">2021 Lily Lee - All rights reserved</p>
     </footer>
   </body>
 </html>

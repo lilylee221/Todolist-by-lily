@@ -46,6 +46,11 @@ body {
   margin: 3.2rem;
   cursor: default;
   min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #ffe5d9 0%,
+    rgba(255, 232, 214, 0) 64.06%
+  );
 }
 
 ul {
@@ -186,8 +191,9 @@ header {
   align-items: center;
 }
 .navbar__logo {
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
+  margin-right: 0.8rem;
 }
 .navbar__logo-box {
   display: flex;
@@ -220,12 +226,12 @@ header {
 }
 
 .home__quote-container {
-  width: 50rem;
-  height: 10rem;
+  width: 70%;
+  height: 14rem;
   margin-bottom: 3.2rem;
   backface-visibility: hidden;
-  background-image: url(../img/Quote-background.png);
-  background-position: top;
+  background-image: url(../img/Quote-background.svg);
+  /* background-position: top; */
   background-position: center;
   background-size: cover;
 }
@@ -240,7 +246,6 @@ header {
   font-weight: var(--font-weight-regular);
   color: var(--secondary-variant-color);
   text-align: center;
-  text-transform: capitalize;
   animation: move-in-left 0.5s ease-in;
 }
 .home__newtodo-form {
@@ -327,7 +332,7 @@ header {
   align-items: center;
 }
 .dateinfo {
-  flex: 1 1 10%;
+  flex: 0 0 15%;
 }
 .list__text {
   margin-left: 0.8rem;
@@ -335,14 +340,14 @@ header {
   font-weight: var(--font-weight-medium);
   font-size: inherit;
   transition: all var(--transition-duration) linear;
-  flex: 1 1 70%;
+  flex: 1;
 }
 .list__text:not(:read-only) {
   color: var(--on-primary-medium);
   font-weight: var(--font-weight-regular);
 }
 .list__actions {
-  flex: 0 1 20%;
+  flex: 0 0 20%;
   font-size: inherit;
 }
 .list__actions button {
@@ -351,6 +356,7 @@ header {
 }
 .list__edit {
   color: var(--on-primary-high);
+  text-align: center;
   background-color: transparent;
   padding: 0.4rem;
   font-size: inherit;
@@ -362,10 +368,15 @@ header {
   font-size: inherit;
 }
 /* calendar */
+.calendar {
+  margin-bottom: 1.6rem;
+}
 
 /* header */
 .calendar__header {
-  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: var(--font-size-large);
   font-style: normal;
   font-weight: var(--font-weight-medium);
@@ -375,41 +386,36 @@ header {
   text-align: center;
   margin: 3.2rem 0 1.6rem 0;
 }
-.calendar__btns {
-  text-align: start;
+.calendar__add-button {
+  font-size: 2rem;
 }
 /* body */
-.calendar__days {
+.calendar__days-dates {
   display: flex;
-  height: 50rem;
+  justify-content: space-evenly;
 }
-.day-container {
-  margin-right: 0.4rem;
-  box-shadow: var(--1dp-elevation);
-}
-.calender__date-container {
+
+.calendar__day-date {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: var(--basic-border);
-  padding: 0.4rem;
 }
 .calendar__day {
-  color: var(--primary-variant-color);
+  font-size: var(--font-size-medium);
+  margin-bottom: 0.4rem;
 }
 .calendar__date {
-  color: var(--on-primary-medium);
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.6);
 }
 
-.day-container ul {
-  padding: 0.8rem;
+.calendar__date--selected {
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #bee1e6;
 }
-.calendar__todolist {
-  margin-bottom: 0.8rem;
-}
-
 /* footer */
-footer {
+.footer {
   position: relative;
   bottom: 0;
   display: flex;
@@ -417,18 +423,19 @@ footer {
   align-items: center;
   margin-top: 6.4rem;
 }
-.contact__links {
+.footer__contact-links {
   margin-top: 1.6rem;
   text-align: center;
   color: var(--on-primary-medium);
 }
-.contact__links h5 {
+.footer__link {
   margin-bottom: 0.8rem;
 }
-.contact__links a i {
-  font-size: 2.4rem;
+.footer__link i {
+  font-size: 4rem;
 }
-.contact__copyright {
-  margin-top: 3.2rem;
+.footer__copyright {
+  font-size: 1.4rem;
+  margin-top: 1.6rem;
   color: var(--on-primary-low);
 }
