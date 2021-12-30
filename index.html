@@ -65,10 +65,30 @@
           <button type="submit" class="btn new-todo__add">Add</button>
         </form>
       </section>
-      <section class="calendar">
-        <div class="calendar__header">
+      <section class="calendar-section">
+        <div class="calendar">
+          <div class="calendar__header">
+           
+              <button class="calendar__back-btn"><</button>
+              <span class="calendar__month-year" >month/year</span>
+              <button class="calendar__after-btn">></button>
+      
+          </div>
+          <div id="calendar__body">
+            <ul class="calendar__days">
+              <li class="calendar__day">SUN</li>
+              <li class="calendar__day">MON</li>
+              <li class="calendar__day">TUE</li>
+              <li class="calendar__day">WED</li>
+              <li class="calendar__day">THU</li>
+              <li class="calendar__day">FRI</li>
+              <li class="calendar__day">SAT</li>
+            </ul>
+          </div>
+        </table>
+        <!-- <div class="calendar__header">
           <div class="calendar__month-year-container">
-            <span class="calendar__month-year">12/2021</span>
+            <span class="calendar__month-year">12 / 2021</span>
             <button class="calendar__expand-btn">
               <i class="fas fa-chevron-down"></i>
             </button>
@@ -79,34 +99,34 @@
         </div>
         <ul class="calendar__days-dates">
           <li class="calendar__day-date">
-            <span class="calendar__day">Mon</span>
-            <button class="calendar__date">27</button>
+            <span class="calendar__day calendar__mon">MON</span>
+            <button class="calendar__date"></button>
           </li>
           <li class="calendar__day-date">
-            <span class="calendar__day">Tue</span>
-            <button class="calendar__date calendar__date--selected">28</button>
+            <span class="calendar__day calendar__tue">TUE</span>
+            <button class="calendar__date"></button>
           </li>
           <li class="calendar__day-date">
-            <span class="calendar__day">Wed</span>
-            <button class="calendar__date">29</button>
+            <span class="calendar__day calendar__wed">WED</span>
+            <button class="calendar__date"></button>
           </li>
           <li class="calendar__day-date">
-            <span class="calendar__day">Thu</span>
+            <span class="calendar__day calendar__thu">THU</span>
             <button class="calendar__date">30</button>
           </li>
           <li class="calendar__day-date">
-            <span class="calendar__day">Fri</span>
+            <span class="calendar__day calendar__fri">FRI</span>
             <button class="calendar__date">31</button>
           </li>
           <li class="calendar__day-date">
-            <span class="calendar__day">Sat</span>
+            <span class="calendar__day calendar__sat">SAT</span>
             <button class="calendar__date">1</button>
           </li>
           <li class="calendar__day-date">
-            <span class="calendar__day">Sun</span>
+            <span class="calendar__day calendar__sun">SUN</span>
             <button class="calendar__date">2</button>
           </li>
-        </ul>
+        </ul> -->
       </section>
       <section id="my-todo-list">
         <ul class="lists"></ul>

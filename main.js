@@ -3,6 +3,10 @@
 const currentDate = document.querySelector('.navbar__date');
 const currentHour = document.querySelector('.navbar__hour');
 
+const quoteEl = document.querySelector('.home__today-quote');
+const calendarBody = document.getElementById('calendar__body');
+const calendarMonthYear = document.querySelector('.calendar__month-year');
+const calendarDays = document.querySelectorAll('.calendar__day');
 const newTodoForm = document.querySelector('.home__newtodo-form');
 const newTodoInput = document.querySelector('.new-todo__textbox');
 const myTodoList = document.querySelector('#my-todo-list');
@@ -11,16 +15,95 @@ const datepicker = document.querySelector('.new-todo__date');
 const ulEl = document.querySelector('.lists');
 const locationEl = document.querySelector('.navbar__location');
 
-//get today date & hour
-const now = new Date();
-const day = `${now.getDate()}`.padStart(2, 0);
-const month = `${now.getMonth() + 1}`.padStart(2, 0);
+//get today day, date, year and hours
 
-const year = now.getFullYear();
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+let now = new Date();
+const today = days[now.getDay() - 1];
+const date = now.getDate();
+let month = now.getMonth();
+
+let year = now.getFullYear();
 const hour = now.getHours();
 const minutes = `${now.getMinutes()}`.padStart(2, 0);
-currentDate.textContent = `${day}/${month}/${year}`;
+calendarMonthYear.textContent = `${month + 1} / ${year}`;
+currentDate.textContent = `${date}/${month + 1} /${year}`;
 currentHour.textContent = `${hour}:${minutes}`;
+
+let startDate = new Date(year, month, 1).getDate();
+let startDay = new Date(year, month, 1).getDay();
+let lastDate = new Date(year, month + 1, 0).getDate();
+
+// Calendar rendering function
+
+function renderCalendar() {
+  const calendarDateUl = document.createElement('ul');
+  calendarDateUl.classList.add('calendar__dates');
+  calendarBody.insertAdjacentElement('beforeend', calendarDateUl);
+
+  for (let i = 0; i < startDay; i++) {
+    //first_day에 해당하는 요일까지 열을 만든다.
+    //요일은 0부터 시작하기 때문에 i값도 0에서 시작한다.
+    const calendarDateLi = document.createElement('li');
+    calendarDateLi.classList.add('calendar__date');
+    calendarDateLi.innerHTML = '';
+    calendarDateUl.insertAdjacentElement('beforeend', calendarDateLi);
+  }
+  for (let i = 1; i <= lastDate; i++) {
+    // 달력은 1일부터 시작하므로 i=1
+    if (startDay != 7) {
+      //first_day는 0~6이다. 일주일은 한 줄에 7칸이니까 7이상은 찍히지 않는다.
+      const calendarDateLi = document.createElement('li');
+      calendarDateLi.classList.add('calendar__date');
+      calendarDateLi.setAttribute('data-key', `date-${i}`);
+      calendarDateLi.innerHTML = `${i}`;
+      // calendarDateUl.insertAdjacentElement('beforeend', calendarDateLi);
+      calendarBody.lastElementChild.insertAdjacentElement(
+        'beforeend',
+        calendarDateLi
+      );
+      startDay += 1;
+      //요일값이 하루 추가된걸 for문에 알려줌
+    } else {
+      const calendarDateUl = document.createElement('ul');
+      calendarDateUl.classList.add('calendar__dates');
+      calendarBody.insertAdjacentElement('beforeend', calendarDateUl);
+
+      //행을 하나 추가
+      const calendarDateLi = document.createElement('li');
+      calendarDateLi.classList.add('calendar__date');
+      calendarDateLi.setAttribute('data-key', `date-${i}`);
+      calendarDateLi.innerHTML = `${i}`;
+      calendarBody.lastElementChild.insertAdjacentElement(
+        'beforeend',
+        calendarDateLi
+      );
+
+      //세줄은 위와 같음
+      startDay = startDay - 6;
+      //6을 빼는 이유는 매번 7에서 else문으로 넘어오고, if문이 6번만 하면 되기때문이다.
+      //7을 빼버리면 0부터 시작해서 if문이 7번 실행되고 else로 넘어오므로 -6을한다.
+    }
+  }
+}
+
+//calendar date selection / deselction function to attach to eventlistener
+
+let selectedDate = date;
+
+////add class to selcted date
+function selectDate() {
+  const selectedDateEl = document.querySelectorAll(
+    `[data-key="date-${selectedDate}"]`
+  );
+  selectedDateEl[0].classList.add('calendar__date--selected');
+}
+
+////Remove class from former date
+function deselectDate() {
+  const formerDate = document.querySelector('.calendar__date--selected');
+  formerDate.classList.remove('calendar__date--selected');
+}
 
 ////////////////////////////
 //////////////////////////////////////////////////////////////functions
@@ -70,7 +153,6 @@ function getCityCountry(lat, lng) {
 //load quotes json and display
 
 function loadQuotes() {
-  const quoteEl = document.querySelector('.home__today-quote');
   return fetch('https://type.fit/api/quotes')
     .then((response) => response.json())
     .then(
@@ -88,7 +170,7 @@ function upateTime() {
   currentHour.textContent = `${updateHour}:${updateMinutes}`;
 }
 
-//addtodo function to add new todo to todos array
+// //addtodo function to add new todo to todos array
 let todos = [];
 function addtodo(item) {
   //make a new todo object
@@ -153,6 +235,8 @@ const init = function () {
   getLocation();
   loadQuotes();
   getLocalStorage();
+  renderCalendar();
+  selectDate();
 };
 
 //edit & delete btn function
@@ -192,6 +276,14 @@ setInterval(upateTime, 1000);
 let newSelectedDate;
 datepicker.addEventListener('change', function () {
   newSelectedDate = this.value;
+});
+
+// When clicking date in the calendar, add selected class
+
+calendarBody.addEventListener('click', (e) => {
+  deselectDate();
+  selectedDate = e.target.innerHTML;
+  selectDate();
 });
 
 //when clicking add btn, check if there is input and add new todo
