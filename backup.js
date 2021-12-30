@@ -1,19 +1,18 @@
 'use strict';
 //selectors
-const currentDate = document.querySelector('.header__date');
-const currentHour = document.querySelector('.header__hour');
+const currentDate = document.querySelector('.navbar__date');
+const currentHour = document.querySelector('.navbar__hour');
 
-const quoteEl = document.querySelector('.today-quote__text');
-const calendarBody = document.querySelector('.calendar__body');
-// const calendarBody = document.getElementById('calendar__body');
+const quoteEl = document.querySelector('.home__today-quote');
+const calendarBody = document.getElementById('calendar__body');
 const calendarMonthYear = document.querySelector('.calendar__month-year');
 const calendarDays = document.querySelectorAll('.calendar__day');
-const newTodoForm = document.querySelector('.new-todo__form');
-const newTodoInput = document.querySelector('.new-todo__input');
+const newTodoForm = document.querySelector('.home__newtodo-form');
+const newTodoInput = document.querySelector('.new-todo');
 const myTodoList = document.querySelector('#my-todo-list');
-const addBtn = document.querySelector('.new-todo__add-btn');
+const addBtn = document.querySelector('.new-todo__add');
 const todoUlEl = document.querySelector('.lists');
-const locationEl = document.querySelector('.header__location');
+const locationEl = document.querySelector('.navbar__location');
 const monthBackBtn = document.querySelector('.calendar__btn--back');
 const monthAfterBtn = document.querySelector('.calendar__btn--after');
 //get today day, date, year and hours
@@ -214,8 +213,8 @@ function renderTodos(todos) {
 
       //input creation
       todoLiEl.innerHTML = `
-        <input type="checkbox" class="checkbox" ${checked}>
-        <input type = "text" class="list__text ${checked}" readonly="readonly" value=${item.name}>
+        <input type="checkbox" class="checkbox" ${checked} >
+        <input type = "text" class="list__text" readonly="readonly" value=${item.name}>
 
         <div class="list_actions">
         <button class="btn list__edit"><i class="fas fa-edit"></i></button>
@@ -226,54 +225,6 @@ function renderTodos(todos) {
       todoUlEl.append(todoLiEl);
     }
   });
-}
-
-//edit & delete btn function
-function editDeleteList(e) {
-  const editBtn = e.target.closest('.list__edit');
-  const deleteBtn = e.target.closest('.list__delete');
-  const inputEl = e.target.parentNode.previousElementSibling;
-  const eventList = e.target.parentNode.parentNode;
-
-  if (!editBtn && !deleteBtn) return;
-
-  if (editBtn) {
-    if (editBtn.innerHTML == '<i class="fas fa-edit" aria-hidden="true"></i>') {
-      editBtn.innerHTML = '<i class="fas fa-save"></i>';
-      inputEl.removeAttribute('readonly');
-      inputEl.focus();
-    } else {
-      inputEl.setAttribute('readonly', 'readonly');
-      e.target.innerHTML = '<i class="fas fa-edit"></i>';
-      const updatedTodo = todos.find(
-        (item) => item.id == eventList.getAttribute('data-key')
-      );
-      updatedTodo.name = inputEl.value;
-      addToLocalStorage(todos);
-    }
-  }
-  if (deleteBtn) {
-    deleteTodo(eventList.getAttribute('data-key'));
-  }
-}
-
-//checkbox function
-function completeTodo(id) {
-  let checkedTodo = todos.find((item) => item.id == id);
-  checkedTodo.completed === false
-    ? (checkedTodo.completed = true)
-    : (checkedTodo.completed = false);
-  addToLocalStorage(todos);
-}
-function checkTodo(e) {
-  const checkboxEl = e.target.closest('.checkbox');
-  const inputEl = e.target.nextElementSibling;
-  const eventList = e.target.parentNode;
-  const checkedEditBtn = e.target.parentNode.lastElementChild.lastElementChild;
-
-  if (!checkboxEl) return;
-  inputEl.classList.toggle('checked');
-  completeTodo(eventList.getAttribute('data-key'));
 }
 
 // function to read local storage
@@ -294,6 +245,48 @@ const init = function () {
   selectDate();
 };
 
+//edit & delete btn function
+function editDeleteList(e) {
+  const editBtn = e.target.closest('.list__edit');
+  const deleteBtn = e.target.closest('.list__delete');
+  const inputEl = e.target.parentNode.previousElementSibling;
+
+  if (!editBtn && !deleteBtn) return;
+
+  if (editBtn) {
+    if (editBtn.innerHTML == '<i class="fas fa-edit" aria-hidden="true"></i>') {
+      e.target.innerHTML = '<i class="fas fa-save"></i>';
+
+      inputEl.removeAttribute('readonly');
+      inputEl.focus();
+    } else {
+      inputEl.setAttribute('readonly', 'readonly');
+      e.target.innerHTML = '<i class="fas fa-edit"></i>';
+    }
+  }
+  if (deleteBtn) {
+    const eventList = e.target.parentNode.parentNode;
+    deleteTodo(eventList.getAttribute('data-key'));
+    //   // deleteTodo();
+  }
+}
+
+//checkbox function
+function checkTodo(e) {
+  const checkboxEl = e.target.type('checkbox');
+  const inputEl = e.target.nextElementSibling;
+  const eventList = e.target.parentNode;
+
+  if (!checkboxEl) return;
+  inputEl.classList.toggle('list__text-strikethrough');
+  completeTodo(eventList.getAttribute('data-key'));
+}
+function completeTodo(id) {
+  const checkedTodo = todos.find((item) => item.id === id);
+  checkedTodo.completed == false
+    ? checkedTodo.completed == true
+    : checkedTodo.completed == false;
+}
 //////////////////////////////////////////////////////////////////////////////////
 
 window.addEventListener('load', () => {
@@ -328,10 +321,7 @@ newTodoForm.addEventListener('submit', (e) => {
 
 //edit & delete btn event
 
-todoUlEl.addEventListener('click', (e) => {
-  editDeleteList(e);
-  checkTodo(e);
-});
+todoUlEl.addEventListener('click', (e) => editDeleteList(e));
 
 // deletes a todo from todos array, then updates localstorage and renders updated list to screen
 
