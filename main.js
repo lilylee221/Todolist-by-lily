@@ -200,20 +200,19 @@ function addToLocalStorage(todos) {
 // rendering function to make new todo list
 function renderTodos(todos) {
   todoUlEl.innerHTML = '';
+  const filteredTodo = todos.filter(
+    (item) =>
+      item.date == selectedDate && item.month === month && item.year === year
+  );
   // ul, li, date creation
-  todos.forEach((item) => {
-    if (
-      item.date == selectedDate &&
-      item.month === month &&
-      item.year === year
-    ) {
-      const checked = item.completed ? 'checked' : null;
-      const todoLiEl = document.createElement('li');
-      todoLiEl.classList.add('todo__list');
-      todoLiEl.setAttribute('data-key', item.id);
+  filteredTodo.forEach((item) => {
+    const checked = item.completed ? 'checked' : null;
+    const todoLiEl = document.createElement('li');
+    todoLiEl.classList.add('todo__list');
+    todoLiEl.setAttribute('data-key', item.id);
 
-      //input creation
-      todoLiEl.innerHTML = `
+    //input creation
+    todoLiEl.innerHTML = `
         <input type="checkbox" class="checkbox" ${checked}>
         <input type = "text" class="list__text ${checked}" readonly="readonly" value='${item.name}'>
 
@@ -223,8 +222,7 @@ function renderTodos(todos) {
         </div>
       `;
 
-      todoUlEl.append(todoLiEl);
-    }
+    todoUlEl.append(todoLiEl);
   });
 }
 
