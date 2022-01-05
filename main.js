@@ -14,6 +14,7 @@ const myTodoList = document.querySelector('.todos');
 const addBtn = document.querySelector('.new-todo__add-btn');
 const todoUlEl = document.querySelector('.todos__lists');
 const locationEl = document.querySelector('.header__location');
+const completedDeleteBtn = document.querySelector('.todos__completed-delete');
 const monthBackBtn = document.querySelector('.calendar__btn--back');
 const monthAfterBtn = document.querySelector('.calendar__btn--after');
 //get today day, date, year and hours
@@ -225,6 +226,10 @@ function renderTodos(todos) {
 
     todoUlEl.append(todoLiEl);
   });
+
+  filteredTodo.length > 0
+    ? (completedDeleteBtn.innerHTML = `<i class="fas fa-eraser"></i> Delete completed items`)
+    : (completedDeleteBtn.innerHTML = '');
 }
 
 //edit & delete btn function
@@ -292,6 +297,13 @@ const init = function () {
   renderCalendar();
   selectDate();
 };
+
+//Delete completed items function
+completedDeleteBtn.addEventListener('click', (e) => {
+  todos.forEach((item) => {
+    if (item.completed) deleteTodo(item.id);
+  });
+});
 
 //////////////////////////////////////////////////////////////////////////////////
 
