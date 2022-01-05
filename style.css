@@ -371,27 +371,27 @@ header {
 }
 
 /* Simple todo list */
-#my-todo-list {
+.todos {
   width: 45%;
 
   font-size: var(--font-size-medium);
 }
-#my-todo-list ul li {
+.todos ul li {
   height: 4.8rem;
   border-radius: 15px;
 
   padding: 1.6rem 0.8rem;
 }
-#my-todo-list ul li:nth-child(odd) {
+.todos ul li:nth-child(odd) {
   background: var(--secondary-main-color);
   box-shadow: inset 8px 8px 16px #bca7a9, inset -8px -8px 16px #fadddf;
 }
-#my-todo-list ul li:nth-child(even) {
+.todos ul li:nth-child(even) {
   background: var(--primary-main-color);
   box-shadow: inset 8px 8px 16px #a7a9bc, inset -8px -8px 16px #dddffa;
 }
 
-.my-todo-list__header {
+.todos__header {
   display: block;
   height: 4.2rem;
   border-radius: 15px;
@@ -403,7 +403,7 @@ header {
   color: var(--primary-variant-color);
 }
 
-.todo__list {
+.todos__item {
   height: 4rem;
   margin-bottom: 0.4rem;
   display: flex;
@@ -413,7 +413,7 @@ header {
 .dateinfo {
   flex: 0 0 15%;
 }
-.list__text {
+.todos__item__text {
   margin-left: 0.8rem;
   color: var(--on-primary-high);
   font-weight: var(--font-weight-medium);
@@ -422,31 +422,29 @@ header {
   flex: 1;
   color: var(--on-primary-high);
 }
-.list__text:not(:read-only) {
+.todos__item__text:not(:read-only) {
   color: var(--on-primary-medium);
   font-weight: var(--font-weight-regular);
 }
 .checked {
   text-decoration: line-through;
 }
-.list__actions {
+.todos__item__actions {
   flex: 0 0 20%;
   font-size: inherit;
 }
-.list__actions button {
+.todos__item__actions button {
   padding: 0.4rem;
 }
-.list__edit {
+.todos__item__edit {
   color: var(--on-primary-high);
   text-align: center;
   background-color: transparent;
   padding: 0.4rem;
   font-size: inherit;
 }
-.list__edit--inactive {
-  opacity: 0;
-}
-.list__delete {
+
+.todos__item__delete {
   color: var(--error-color);
   background-color: transparent;
   padding: 0.4rem;

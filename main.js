@@ -10,9 +10,9 @@ const calendarMonthYear = document.querySelector('.calendar__month-year');
 const calendarDays = document.querySelectorAll('.calendar__day');
 const newTodoForm = document.querySelector('.new-todo__form');
 const newTodoInput = document.querySelector('.new-todo__input');
-const myTodoList = document.querySelector('#my-todo-list');
+const myTodoList = document.querySelector('.todos');
 const addBtn = document.querySelector('.new-todo__add-btn');
-const todoUlEl = document.querySelector('.lists');
+const todoUlEl = document.querySelector('.todos__lists');
 const locationEl = document.querySelector('.header__location');
 const monthBackBtn = document.querySelector('.calendar__btn--back');
 const monthAfterBtn = document.querySelector('.calendar__btn--after');
@@ -207,18 +207,19 @@ function renderTodos(todos) {
   // ul, li, date creation
   filteredTodo.forEach((item) => {
     const checked = item.completed ? 'checked' : null;
+    const checkedClass = item.completed ? 'checked' : '';
     const todoLiEl = document.createElement('li');
-    todoLiEl.classList.add('todo__list');
+    todoLiEl.classList.add('todos__item');
     todoLiEl.setAttribute('data-key', item.id);
 
     //input creation
     todoLiEl.innerHTML = `
-        <input type="checkbox" class="checkbox" ${checked}>
-        <input type = "text" class="list__text ${checked}" readonly="readonly" value='${item.name}'>
+        <input type="checkbox" class="todos__checkbox" ${checked}>
+        <input type = "text" class="todos__item__text ${checkedClass}" readonly="readonly" value='${item.name}'>
 
         <div class="list_actions">
-        <button class="btn list__edit"><i class="fas fa-edit"></i></button>
-        <button class="btn list__delete"><i class="fas fa-trash-alt"></i></button>
+        <button class="btn todos__item__edit"><i class="fas fa-edit"></i></button>
+        <button class="btn todos__item__delete"><i class="fas fa-trash-alt"></i></button>
         </div>
       `;
 
@@ -228,8 +229,8 @@ function renderTodos(todos) {
 
 //edit & delete btn function
 function editDeleteList(e) {
-  const editBtn = e.target.closest('.list__edit');
-  const deleteBtn = e.target.closest('.list__delete');
+  const editBtn = e.target.closest('.todos__item__edit');
+  const deleteBtn = e.target.closest('.todos__item__delete');
   const inputEl = e.target.parentNode.previousElementSibling;
   const eventList = e.target.parentNode.parentNode;
 
@@ -264,7 +265,7 @@ function completeTodo(id) {
   addToLocalStorage(todos);
 }
 function checkTodo(e) {
-  const checkboxEl = e.target.closest('.checkbox');
+  const checkboxEl = e.target.closest('.todos__checkbox');
   const inputEl = e.target.nextElementSibling;
   const eventList = e.target.parentNode;
   const checkedEditBtn = e.target.parentNode.lastElementChild.lastElementChild;
