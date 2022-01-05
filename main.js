@@ -215,7 +215,7 @@ function renderTodos(todos) {
       //input creation
       todoLiEl.innerHTML = `
         <input type="checkbox" class="checkbox" ${checked}>
-        <input type = "text" class="list__text ${checked}" readonly="readonly" value=${item.name}>
+        <input type = "text" class="list__text ${checked}" readonly="readonly" value='${item.name}'>
 
         <div class="list_actions">
         <button class="btn list__edit"><i class="fas fa-edit"></i></button>
@@ -318,7 +318,7 @@ calendarBody.addEventListener('click', (e) => {
 //when clicking add btn, check if there is input and add new todo
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const task = newTodoInput.value.replace(/[\t\n\r ]+/g, ' ');
+  const task = newTodoInput.value;
   if (!task) {
     alert('Please input a new todo task');
   } else {
