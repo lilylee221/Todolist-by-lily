@@ -8,6 +8,10 @@ const calendarBody = document.querySelector('.calendar__body');
 // const calendarBody = document.getElementById('calendar__body');
 const calendarMonthYear = document.querySelector('.calendar__month-year');
 const calendarDays = document.querySelectorAll('.calendar__day');
+const alertMsgModal = document.querySelector('.todo-list__alert-msg');
+const alertModalEscapeBtn = document.querySelector(
+  '.todo-list__alert-msg__escape'
+);
 const newTodoForm = document.querySelector('.new-todo__form');
 const newTodoInput = document.querySelector('.new-todo__input');
 const myTodoList = document.querySelector('.todos');
@@ -17,6 +21,7 @@ const locationEl = document.querySelector('.header__location');
 const completedDeleteBtn = document.querySelector('.todos__completed-delete');
 const monthBackBtn = document.querySelector('.calendar__btn--back');
 const monthAfterBtn = document.querySelector('.calendar__btn--after');
+const overlayEl = document.querySelector('.overlay');
 //get today day, date, year and hours
 
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -298,13 +303,6 @@ const init = function () {
   selectDate();
 };
 
-//Delete completed items function
-completedDeleteBtn.addEventListener('click', (e) => {
-  todos.forEach((item) => {
-    if (item.completed) deleteTodo(item.id);
-  });
-});
-
 //////////////////////////////////////////////////////////////////////////////////
 
 window.addEventListener('load', () => {
@@ -331,10 +329,19 @@ newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const task = newTodoInput.value;
   if (!task) {
-    alert('Please input a new todo task');
+    const alertMsgModal = document.querySelector('.todo-list__alert-msg');
+    alertMsgModal.classList.add('alert--active');
+    overlayEl.classList.add('overlay--active');
   } else {
     addtodo(task);
   }
+});
+
+//alert modal close btn event
+
+alertModalEscapeBtn.addEventListener('click', () => {
+  alertMsgModal.classList.remove('alert--active');
+  overlayEl.classList.remove('overlay--active');
 });
 
 //edit & delete btn event
@@ -409,4 +416,12 @@ monthAfterBtn.addEventListener('click', () => {
     lastDate = new Date(year, month, 0).getDate();
     renderCalendar();
   }
+});
+
+//Delete completed items btn event
+
+completedDeleteBtn.addEventListener('click', () => {
+  todos.forEach((item) => {
+    if (item.completed) deleteTodo(item.id);
+  });
 });

@@ -67,7 +67,7 @@ button {
   border: none;
 
   outline: none;
-  padding: 1rem 0.8rem;
+  /* padding: 1rem 0.8rem; */
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: var(--font-weight-medium);
@@ -249,10 +249,48 @@ header {
 }
 
 /* Todo-list Section */
+
 .todo-list {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
+
+/* empty input alert */
+.todo-list__alert-msg {
+  width: 50%;
+  position: absolute;
+  left: 25%;
+  height: 0;
+  font-size: 2rem;
+  text-align: center;
+  opacity: 0;
+}
+.todo-list__alert-msg button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 2rem;
+  height: 2rem;
+}
+.todo-list__alert-msg button i {
+  font-size: 2rem;
+}
+.alert--active {
+  width: 50%;
+  position: absolute;
+  height: 10rem;
+  line-height: 10rem;
+  font-size: 2rem;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #e6e7ea, #c2c2c5);
+  box-shadow: 8px 8px 16px #a3a4a6, -8px -8px 16px #ffffff;
+  z-index: 2;
+  color: var(--error-color);
+  opacity: 1;
+}
+
+/* new todo form */
 .new-todo {
   margin-bottom: 4rem;
   flex: 0 0 45%;
@@ -488,4 +526,14 @@ header {
   font-size: 1.4rem;
   margin-top: 1.6rem;
   color: var(--on-primary-low);
+}
+
+.overlay--active {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  opacity: 0.4;
 }
