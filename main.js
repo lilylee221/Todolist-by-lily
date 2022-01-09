@@ -328,10 +328,11 @@ calendarBody.addEventListener('click', (e) => {
 newTodoForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const task = newTodoInput.value;
-  if (!task) {
+  if (task.trim().length === 0) {
     const alertMsgModal = document.querySelector('.todo-list__alert-msg');
     alertMsgModal.classList.add('alert--active');
     overlayEl.classList.add('overlay--active');
+    newTodoInput.value = '';
   } else {
     addtodo(task);
   }

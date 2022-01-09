@@ -11,11 +11,11 @@
   --font-weight-light: 300;
 
   /* Color */
-  --primary-main-color: #c2c4db;
-  --primary-variant-color: #5b609a;
+  --primary-main-color: #94bbe9;
+  --primary-variant-color: #2579dd;
   --primary-light-color: #ffcccb91;
-  --secondary-main-color: #dbc2c4;
-  --secondary-variant-color: #a5656a;
+  --secondary-main-color: #eeaeca;
+  --secondary-variant-color: #dc6398;
   --error-color: #b00020;
   --on-primary-high: rgba(0, 0, 0, 0.87);
   --on-primary-medium: rgba(0, 0, 0, 0.6);
@@ -47,11 +47,11 @@ body {
   margin: 3.2rem;
   cursor: default;
   min-height: 100vh;
-  background: linear-gradient(
-    180deg,
-    rgba(206, 206, 207, 1) 0%,
-    rgba(194, 196, 219, 1) 47%,
-    rgba(91, 96, 154, 1) 100%
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
   );
 }
 
@@ -91,6 +91,11 @@ input {
 }
 p {
   margin: 0;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
 }
 @keyframes move-in-left {
   0% {
@@ -156,7 +161,7 @@ h6 {
   letter-spacing: 0.015000000596046448rem;
   text-align: left;
 }
-.hover {
+/* .hover {
   background: rgba(0, 0, 0, 0.16);
   border-radius: 4px;
 }
@@ -167,19 +172,10 @@ h6 {
 .dragged {
   background: rgba(0, 0, 0, 0.08);
   border-radius: 4px;
-}
-
-input[type='date'] {
-  font-size: var(--font-size-regular);
-}
-label {
-  margin-left: 0.25rem;
-}
+} */
 
 /* nav bar */
-header {
-  margin-bottom: 6.4rem;
-}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -211,18 +207,27 @@ header {
   padding-left: 8px;
 }
 
+.surface {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 /* Today-quote section */
 .today-quote {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 80rem;
-  margin: auto;
+  margin: 3.2rem auto;
 }
 
 .today-quote__container {
   width: 90%;
-  height: 16rem;
+  height: fit-content;
   margin-bottom: 2rem;
   backface-visibility: hidden;
   /* background-image: url(../img/Quote-background.svg); */
@@ -259,7 +264,7 @@ header {
 /* empty input alert */
 .todo-list__alert-msg {
   width: 50%;
-  position: absolute;
+  position: fixed;
   left: 25%;
   height: 0;
   font-size: 2rem;
@@ -292,9 +297,9 @@ header {
 
 /* new todo form */
 .new-todo {
-  margin-bottom: 4rem;
+  height: 40rem;
   flex: 0 0 45%;
-  height: 50rem;
+  padding: 2.8rem;
 }
 
 .new-todo__form {
@@ -315,7 +320,7 @@ header {
   display: inline-block;
   padding: 1.4rem 1rem 1rem 1rem;
   margin-right: 0.4rem;
-  border-radius: 15px;
+  border-radius: 10px;
   /* box-shadow: 20px 20px 38px #a5a7ba, -20px -20px 38px #dfe1fc; */
   /* border: none; */
   border: 0.2rem solid var(--gray-color);
@@ -337,14 +342,22 @@ header {
   font-size: 2rem;
   margin-left: 0.4rem;
   padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
   border-radius: 10px;
-  background: linear-gradient(145deg, #d0d2ea, #afb0c5);
-  box-shadow: 11px 11px 16px #a5a7ba, -11px -11px 16px #dfe1fc;
-  /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3); */
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .new-todo__add-btn:hover {
   /* background-color: var(--secondary-main-color); */
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   transform: translateY(-3px);
 }
 .new-todo__add-btn:active {
@@ -359,9 +372,12 @@ header {
 .calendar {
   text-align: center;
   margin: auto;
-  border-radius: 50px;
-  background: linear-gradient(145deg, #d0d2ea, #afb0c5);
-  box-shadow: 21px 21px 47px #a1a3b6, -21px -21px 47px #e3e5ff;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 1.6rem;
 }
 
@@ -410,8 +426,9 @@ header {
 
 /* Simple todo list */
 .todos {
-  width: 45%;
-
+  height: fit-content;
+  flex: 0 0 45%;
+  padding: 2.8rem;
   font-size: var(--font-size-medium);
 }
 .todos ul li {
@@ -421,23 +438,34 @@ header {
   padding: 1.6rem 0.8rem;
 }
 .todos ul li:nth-child(odd) {
-  background: var(--secondary-main-color);
-  box-shadow: inset 8px 8px 16px #bca7a9, inset -8px -8px 16px #fadddf;
+  background: rgba(238, 174, 202, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .todos ul li:nth-child(even) {
-  background: var(--primary-main-color);
-  box-shadow: inset 8px 8px 16px #a7a9bc, inset -8px -8px 16px #dddffa;
+  background: rgba(148, 187, 233, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .todos__header {
   display: block;
   height: 4.2rem;
-  border-radius: 15px;
   text-align: center;
   line-height: 4.2rem;
   margin-bottom: 0.4rem;
-  background: linear-gradient(145deg, #d0d2ea, #afb0c5);
-  box-shadow: 8px 8px 16px #a7a9bc, -8px -8px 16px #dddffa;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--primary-variant-color);
 }
 
@@ -464,7 +492,7 @@ header {
   color: var(--on-primary-medium);
   font-weight: var(--font-weight-regular);
 }
-.checked {
+.todos__item__text.checked {
   text-decoration: line-through;
 }
 .todos__item__actions {
@@ -521,6 +549,7 @@ header {
 }
 .footer__link i {
   font-size: 4rem;
+  color: var(--primary-variant-color);
 }
 .footer__copyright {
   font-size: 1.4rem;
@@ -536,4 +565,35 @@ header {
   left: 0;
   background-color: #ffffff;
   opacity: 0.4;
+}
+
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 60%;
+  }
+  .todo-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .today-quote,
+  .new-todo,
+  .todos {
+    width: 80%;
+    margin-bottom: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 55%;
+  }
+  .todo-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .today-quote,
+  .new-todo,
+  .todos {
+    width: 100%;
+  }
 }
