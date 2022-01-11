@@ -220,7 +220,12 @@ function renderTodos(todos) {
 
     //input creation
     todoLiEl.innerHTML = `
-        <input type="checkbox" class="todos__checkbox" ${checked}>
+        <div class="todos__item__checkbox-container">
+          <input type="checkbox" id="checkbox${item.id}" class="todos__item__checkbox" ${checked}>
+          <label class="todos__item__checkbox-label" for="checkbox${item.id}">
+            <span class="todos__item__checkbox-button" />
+          </label>
+        </div>
         <input type = "text" class="todos__item__text ${checkedClass}" readonly="readonly" value='${item.name}'>
 
         <div class="list_actions">
@@ -275,9 +280,9 @@ function completeTodo(id) {
   addToLocalStorage(todos);
 }
 function checkTodo(e) {
-  const checkboxEl = e.target.closest('.todos__checkbox');
+  const checkboxEl = e.target.closest('.todos__item__checkbox');
   const inputEl = e.target.nextElementSibling;
-  const eventList = e.target.parentNode;
+  const eventList = e.target.parentNode.parentNode;
   const checkedEditBtn = e.target.parentNode.lastElementChild.lastElementChild;
 
   if (!checkboxEl) return;
