@@ -15,53 +15,13 @@ const newTodoInput = document.querySelector('.new-todo__input');
 const myTodoList = document.querySelector('.todos');
 const addBtn = document.querySelector('.new-todo__add-btn');
 const todoUlEl = document.querySelector('.todos__lists');
-const locationEl = document.querySelector('.header__location');
+// const locationEl = document.querySelector('.header__location');
 const completedDeleteBtn = document.querySelector('.todos__completed-delete');
 const monthBeforeBtn = document.querySelector('.calendar__btn--back');
 const monthAfterBtn = document.querySelector('.calendar__btn--after');
 const overlayEl = document.querySelector('.overlay');
 
 /////////////////// HEADER
-
-// Geolocation
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, () =>
-      alert('error occured')
-    );
-  }
-}
-//Geolocation success -> get lat, lng -> get city and country with Geocode API
-function success(position) {
-  const lat = position.coords.latitude;
-  const lng = position.coords.longitude;
-
-  getCityCountry(lat, lng);
-}
-
-//Get city & country with lat, lng
-
-function getCityCountry(lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?json=1`)
-    .then((res) => {
-      if (!res.ok)
-        throw new Error(`Problem with getting location data (${res.status})`);
-      return res.json();
-    })
-    .then((data) =>
-      locationEl.insertAdjacentText(
-        'beforeend',
-        `📍 ${data.city}, ${data.country}`
-      )
-    )
-    .catch((err) =>
-      locationEl.insertAdjacentText(
-        'beforeend',
-        `An error occured ${err.message}`
-      )
-    );
-}
 
 //get today day, date, month, year and hour
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -458,7 +418,6 @@ function getLocalStorage() {
   }
 }
 const init = function () {
-  getLocation();
   loadQuotes();
   renderCalendar();
   getLocalStorage();
