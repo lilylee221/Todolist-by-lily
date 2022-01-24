@@ -10,7 +10,7 @@ Todo List is a simple web application with dynamic calendar feature that users c
   * Mark a task as completed checking its checkbox
   * Delete all completed tasks 
   
-  ![todo_list](https://user-images.githubusercontent.com/94456162/150670683-42ae8e38-dd91-4529-ba63-89d9ad44f753.png)
+  ![todolist](https://user-images.githubusercontent.com/94456162/150761117-663a3741-08a1-403c-b3d8-202e0276cdde.png)
   
 ### Languages used in the project
  * HTML
