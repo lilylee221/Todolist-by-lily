@@ -21,3 +21,5 @@ Todo List is a simple web application with dynamic calendar feature that users c
  * Geocode.xyz
  * TypeFit quotes API
  
+### App deployment
+https://todolist-lily.netlify.app/
