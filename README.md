@@ -2,7 +2,7 @@
 Todo List is a simple web application with dynamic calendar feature that users can add, edit and delete their tasks on the calendar and organize their daily life.
 
 ## Features
-  * Current time info in the header
+  * Live time info in the header
   * Daily random inpirational quote
   * Select day on the calendar
   * Add a new task
