@@ -144,14 +144,14 @@ h4 {
   letter-spacing: 0rem;
   text-align: left;
 }
-h5 {
+h5,
+figcaption {
   font-family: 'Roboto', sans-serif;
   font-size: 2.4rem;
   font-style: normal;
   font-weight: var(--font-weight-regular);
   line-height: 2.4rem;
   letter-spacing: 0.018000000715255737rem;
-  text-align: left;
 }
 h6 {
   font-family: 'Roboto', sans-serif;
@@ -209,9 +209,9 @@ h6 {
   height: fit-content;
   margin-bottom: 2rem;
   backface-visibility: hidden;
-}
-.today-quote__container h5 {
   text-align: center;
+}
+.today-quote__container figcaption {
   color: var(--on-primary-medium);
 
   margin: 2.4rem 0;
@@ -221,7 +221,7 @@ h6 {
   font-size: var(--font-size-large);
   font-weight: var(--font-weight-regular);
   color: var(--secondary-variant-color);
-  text-align: center;
+  /* text-align: center; */
   animation: move-in-left 0.5s ease-in;
 }
 
