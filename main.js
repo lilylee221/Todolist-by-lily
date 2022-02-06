@@ -178,8 +178,10 @@ const createEmptyItems = () => {
     const calendarDateLi = document.createElement('li');
     calendarDateLi.classList.add('calendar__date');
     calendarDateLi.innerHTML = '';
-    const calendarDateUl = document.querySelector('.calendar__dates');
-    calendarDateUl.insertAdjacentElement('beforeend', calendarDateLi);
+    calendarBody.lastElementChild.insertAdjacentElement(
+      'beforeend',
+      calendarDateLi
+    );
   }
 };
 
@@ -188,7 +190,7 @@ const createCalenderDates = () => {
   for (let i = 1; i <= lastDate; i++) {
     //start date of month = 1 = i
     if (startDay !== 7) {
-      //start day: 0~6,??????????????? 일주일은 한 줄에 7칸이니까 7이상은 찍히지 않는다.
+      //start day: 0~6
       const calendarDateLi = document.createElement('li');
       calendarDateLi.classList.add('calendar__date');
       calendarDateLi.setAttribute('data-key', `date-${i}`);
@@ -198,7 +200,6 @@ const createCalenderDates = () => {
         calendarDateLi
       );
       startDay += 1;
-      //요일값이 하루 추가된걸 for문에 알려줌
     } else {
       //startday = 7 -> column is full
       //create new column
@@ -432,7 +433,7 @@ window.addEventListener('load', () => {
   init();
 });
 
-//background change
+//background dark mode when app starts after 7pm
 if (hour > 19) {
   document.body.style.background =
     'linear-gradient(331deg, rgba(228,157,188,1) 0%, rgba(12,52,100,1) 79%)';
